@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0 auto;
+        }
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+        .wrapper button {
+            margin: 20px;
+            font-size: 16px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <button id="clipboard">clipboard</button>
+        <button id="exec">execCommand</button>
+        <button id="multi">multi</button>
+    </div>
+    <script>
+        const hi = 'Hello Roma!';
+
+        document.getElementById('clipboard').addEventListener('click', (e) => {
+            navigator.clipboard.writeText(hi + ' clipboard');
+        });
+
+        document.getElementById('exec').addEventListener('click', (e) => {
+            var input = document.createElement('textarea');
+            input.innerHTML = hi+ ' exec textarea';
+            document.body.appendChild(input);
+            input.select();
+            document.execCommand('copy');
+            document.body.removeChild(input);
+        });
+        
+        document.getElementById('multi').addEventListener('click', (e) => {
+            var m = document;
+            var txt = m.createTextNode(hi+' multi');
+            var w = window;
+            var b = m.body;
+            b.appendChild(txt);
+            if (b.createTextRange) {
+                var d = b.createTextRange();
+                d.moveToElementText(txt);
+                d.select();
+                m.execCommand('copy');
+            } 
+            else {
+                var d = m.createRange();
+                var g = w.getSelection;
+                d.selectNodeContents(txt);
+                g().removeAllRanges();
+                g().addRange(d);
+                m.execCommand('copy');
+                g().removeAllRanges();
+            }
+            txt.remove();
+        });
+
+        
+    </script>
+</body>
+</html>
