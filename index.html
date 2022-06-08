@@ -32,7 +32,7 @@
         const hi = 'June Eight, Hello Roma!';
         
         document.getElementById('multi').addEventListener('click', (e) => {
-            if (navigator?.clipboard && window?.isSecureContext) {
+            if (navigator?.clipboard && window.isSecureContext) {
                 navigator.clipboard.writeText('Multi last one');
                 } else {
                 const txt = document.createTextNode('Multi last one');
@@ -56,7 +56,7 @@
         });
 
         document.getElementById('super').addEventListener('click', (e) => {
-            if (navigator && window?.isSecureContext) {
+            if (navigator && window.isSecureContext) {
                 navigator.clipboard.writeText('Super last one');
                 } else {
                 const txt = document.createTextNode('Super last one');
