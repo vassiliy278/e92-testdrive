@@ -26,28 +26,59 @@
 <body>
     <div class="wrapper">
         <button id="multi">multi</button>
+        <button id="super">super</button>
     </div>
     <script>
-        const hi = 'Another one try!';
+        const hi = 'June Eight, Hello Roma!';
+        
         document.getElementById('multi').addEventListener('click', (e) => {
-             const txt = document.createTextNode(hi);
-             document.body.appendChild(txt);
-              if (document.body.createTextRange) {
-                const range = document.body.createTextRange();
-                range.moveToElementText(txt);
-                range.select();
-                document.execCommand('copy');
-              } else {
-                const range = document.createRange();
-                const selection = window.getSelection;
-                range.selectNodeContents(txt);
-                selection().removeAllRanges();
-                selection().addRange(range);
-                window.execCommand('copy');
-                selection().removeAllRanges();
-              }
-              txt.remove();
+            if (navigator?.clipboard && window?.isSecureContext) {
+                navigator.clipboard.writeText('Multi last one');
+                } else {
+                const txt = document.createTextNode('Multi last one');
+                document.body.appendChild(txt);
+                if (document.body.createTextRange) {
+                    const range = document.body.createTextRange();
+                    range.moveToElementText(txt);
+                    range.select();
+                    document.execCommand('copy');
+                } else {
+                    const range = document.createRange();
+                    const selection = window.getSelection;
+                    range.selectNodeContents(txt);
+                    selection().removeAllRanges();
+                    selection().addRange(range);
+                    window.execCommand('copy');
+                    selection().removeAllRanges();
+                }
+                txt.remove();
+                }   
         });
+
+        document.getElementById('super').addEventListener('click', (e) => {
+            if (navigator && window?.isSecureContext) {
+                navigator.clipboard.writeText('Super last one');
+                } else {
+                const txt = document.createTextNode('Super last one');
+                document.body.appendChild(txt);
+                if (document.body.createTextRange) {
+                    const range = document.body.createTextRange();
+                    range.moveToElementText(txt);
+                    range.select();
+                    document.execCommand('copy');
+                } else {
+                    const range = document.createRange();
+                    const selection = window.getSelection;
+                    range.selectNodeContents(txt);
+                    selection().removeAllRanges();
+                    selection().addRange(range);
+                    window.execCommand('copy');
+                    selection().removeAllRanges();
+                }
+                txt.remove();
+                }   
+        });
+
     </script>
 </body>
 </html>
