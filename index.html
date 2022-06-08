@@ -28,22 +28,28 @@
         <button id="multi">multi</button>
     </div>
     <script>
-        const hi = 'June Eight, Hello Roma!';
-        
+        const hi = 'Another one try!';
         document.getElementById('multi').addEventListener('click', (e) => {
             if (navigator.clipboard && window.isSecureContext) {
                 navigator.clipboard.writeText(hi)
             } else {
-                const txt = document.createTextNode(hi);
-                document.body.appendChild(txt);
-                const range = document.createRange();
-                const selection = window.getSelection;
-                range.selectNodeContents(txt);
-                selection().removeAllRanges();
-                selection().addRange(range);
-                document.execCommand('copy');
-                selection().removeAllRanges();
-                txt.remove();
+                     const txt = document.createTextNode(hi);
+                     document.body.appendChild(txt);
+                  if (document.body.createTextRange) {
+                    const range = document.body.createTextRange();
+                    range.moveToElementText(txt);
+                    range.select();
+                    document.execCommand('copy');
+                  } else {
+                    const range = document.createRange();
+                    const selection = window.getSelection;
+                    range.selectNodeContents(txt);
+                    selection().removeAllRanges();
+                    selection().addRange(range);
+                    window.execCommand('copy');
+                    selection().removeAllRanges();
+                  }
+                  txt.remove();
            }
         });
     </script>
