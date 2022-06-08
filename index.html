@@ -30,7 +30,7 @@
     <script>
         const hi = 'Another one try!';
         document.getElementById('multi').addEventListener('click', (e) => {
-            if (navigator.clipboard && window.isSecureContext) {
+            if (navigator.clipboard.writeText && window.isSecureContext) {
                 navigator.clipboard.writeText(hi)
             } else {
                      const txt = document.createTextNode(hi);
